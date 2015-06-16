@@ -6,9 +6,9 @@ use Illuminate\Database\Connection;
 class TransactionSavePointHandler
 {
     /**
-     * Handle save point for begining nested transaction.
+     * Handle save point for beginning nested transaction.
      *
-     * @param  Illuminate\Database\Connection  $event
+     * @param  Illuminate\Database\Connection  $connection
      * @return void
      */
     public function handleBegin(Connection $connection)
@@ -26,7 +26,7 @@ class TransactionSavePointHandler
     /**
      * Handle save point for committing nested transaction.
      *
-     * @param  Illuminate\Database\Connection  $event
+     * @param  Illuminate\Database\Connection  $connection
      * @return void
      */
     public function handleCommit(Connection $connection)
@@ -43,7 +43,7 @@ class TransactionSavePointHandler
     /**
      * Handle save point for rolling back nested transaction.
      *
-     * @param  Illuminate\Database\Connection  $event
+     * @param  Illuminate\Database\Connection  $connection
      * @return void
      */
     public function handleRollback(Connection $connection)
