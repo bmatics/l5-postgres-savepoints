@@ -1,5 +1,5 @@
 {
-    "name": "bmatics/l5-savepoints",
+    "name": "bmatics/laravelsavepoints",
     "description": "Adds support for save points to database connections in Laravel 5",
     "license": "MIT",
     "authors": [
