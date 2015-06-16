@@ -1,0 +1,23 @@
+{
+    "name": "bmatics/l5-savepoints",
+    "description": "Adds support for save points to database connections in Laravel 5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Matics",
+            "email": "benjaminmatics@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Bmatics\\TransactionSavePoints\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
