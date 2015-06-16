@@ -1,4 +1,4 @@
-# laravelsavepoints
+# Laravel Save Points
 Adds support for save points to database connections in Laravel 5
 
 Add `Bmatics\TransactionSavePoints\TransactionSavePointServiceProvider` to your app's service providers.
