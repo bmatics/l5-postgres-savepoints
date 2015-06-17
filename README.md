@@ -7,7 +7,7 @@ To enable save points for a connection, simply add `'savepoints' => true` to the
 
 When enabled on a connection, beginning a new transaction while another transaction is already active will create a save point.  Beginning additional transactions on the same connection will create additional save points.  Commiting or rolling back on the connection will release or rollback to the last created save point. Once all save points have been released or rolled back to, you can commit or rollback the entire transaction.
 
-For Example:
+Example:
 ```php
 // begin a new transaction
 DB::beginTransaction();
