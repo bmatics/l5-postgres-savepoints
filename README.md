@@ -25,7 +25,7 @@ $user->save();
 // rollback to the savepoint, update of the user's name to 'Alex' rolled back
 DB::rollBack();
 
-// commit the transaction, commits the user's name as 'Alice'
+// commit the transaction, commits the new user record with the name as 'Alice'
 DB::commit();
 ``` 
 
