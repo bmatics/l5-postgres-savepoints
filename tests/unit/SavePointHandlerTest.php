@@ -11,9 +11,12 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     protected $handler;
 
+    protected $connection;
+
     protected function _before()
     {
         $this->handler = new Bmatics\TransactionSavePoints\TransactionSavePointHandler;
+        $this->connection = Mockery::mock('Illuminate\Database\Connection');
     }
 
     protected function _after()
@@ -24,7 +27,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
     // tests
     public function testSetSavePoint()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(2)
             ->shouldReceive('statement')->once()->with('SAVEPOINT LEVEL1');
@@ -34,7 +37,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testReleaseSavePoint()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(1)
             ->shouldReceive('statement')->once()->with('RELEASE SAVEPOINT LEVEL1');
@@ -44,7 +47,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testRollbackSavePoint()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(1)
             ->shouldReceive('statement')->once()->with('ROLLBACK TO SAVEPOINT LEVEL1');
@@ -54,7 +57,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testSetSavePointLevel2()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(3)
             ->shouldReceive('statement')->once()->with('SAVEPOINT LEVEL2');
@@ -64,7 +67,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testReleaseSavePointLevel2()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(2)
             ->shouldReceive('statement')->once()->with('RELEASE SAVEPOINT LEVEL2');
@@ -74,7 +77,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testRollbackSavePointLevel2()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(2)
             ->shouldReceive('statement')->once()->with('ROLLBACK TO SAVEPOINT LEVEL2');
@@ -84,7 +87,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testBeginTransaction()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(1)
             ->shouldReceive('statement')->never();            
@@ -94,7 +97,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testCommitTransaction()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(0)
             ->shouldReceive('statement')->never(); 
@@ -104,7 +107,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testRollbackTransaction()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->once()->with('savepoints')->andReturn(true)
             ->shouldReceive('transactionLevel')->once()->withNoArgs()->andReturn(0)
             ->shouldReceive('statement')->never(); 
@@ -114,7 +117,7 @@ class SavePointHandlerTest extends \Codeception\TestCase\Test
 
     public function testSavepointsConfigNotSet()
     {
-        $connection = Mockery::mock('Illuminate\Database\Connection');
+        $connection = $this->connection;
         $connection->shouldReceive('getConfig')->times(3)->with('savepoints')->andReturn(false)
             ->shouldReceive('transactionLevel')->never()
             ->shouldReceive('statement')->never(); 
